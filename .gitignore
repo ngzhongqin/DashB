@@ -1,0 +1,7 @@
+
+out/production/DashB/META-INF/persistence.xml
+
+logs/App.log
+
+*.class
+

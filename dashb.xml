@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dashb" default="all">
+  
+  
+  <property file="dashb.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.tox/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.7" value="${jdk.home.1.7}/bin"/>
+  <path id="jdk.classpath.1.7">
+    <fileset dir="${jdk.home.1.7}">
+      <include name="lib/ant-javafx.jar"/>
+      <include name="lib/dt.jar"/>
+      <include name="lib/javafx-doclet.jar"/>
+      <include name="lib/javafx-mx.jar"/>
+      <include name="lib/jconsole.jar"/>
+      <include name="lib/sa-jdi.jar"/>
+      <include name="lib/tools.jar"/>
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/htmlconverter.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxrt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.7}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.7}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.7"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.commons-collections-3.1.classpath">
+    <pathelement location="${basedir}/../library/dashb/commons-collections-3.1.jar"/>
+    <pathelement location="${basedir}/../library/dashb/commons-configuration-1.5.jar"/>
+    <pathelement location="${basedir}/../library/dashb/commons-digester-1.8.jar"/>
+    <pathelement location="${basedir}/../library/dashb/commons-lang-2.4.jar"/>
+    <pathelement location="${basedir}/../library/dashb/commons-logging.jar"/>
+    <pathelement location="${basedir}/../library/dashb/eclipselink.jar"/>
+    <pathelement location="${basedir}/../library/dashb/flex-messaging-core-3.2.0.jar"/>
+    <pathelement location="${basedir}/../library/dashb/gson-2.2.2.jar"/>
+    <pathelement location="${basedir}/../library/dashb/java-json.jar"/>
+    <pathelement location="${basedir}/../library/dashb/javax.persistence.jar"/>
+    <pathelement location="${basedir}/../library/dashb/jcl-over-slf4j-1.7.2.jar"/>
+    <pathelement location="${basedir}/../library/dashb/jetlang-0.2.0.jar"/>
+    <pathelement location="${basedir}/../library/dashb/json-simple-1.1.1.jar"/>
+    <pathelement location="${basedir}/../library/dashb/log4j-1.2.16.jar"/>
+    <pathelement location="${basedir}/../library/dashb/netty-all-4.0.30.Final.jar"/>
+    <pathelement location="${basedir}/../library/dashb/postgresql-9.4-1201.jdbc4.jar"/>
+    <pathelement location="${basedir}/../library/dashb/slf4j-log4j12-1.6.1.jar"/>
+    <pathelement location="${basedir}/../library/dashb/slf4j.api-1.6.1.jar"/>
+    <pathelement location="${basedir}/../library/dashb/spring-aop-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/../library/dashb/spring-beans-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/../library/dashb/spring-context-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/../library/dashb/spring-core-3.1.0.RELEASE.jar"/>
+    <pathelement location="${basedir}/../library/dashb/spring-expression-3.1.0.RELEASE.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module DashB -->
+  
+  <dirname property="module.dashb.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.dashb" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.dashb" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.dashb" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.dashb" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="dashb.output.dir" value="${module.dashb.basedir}/out/production/DashB"/>
+  <property name="dashb.testoutput.dir" value="${module.dashb.basedir}/out/test/DashB"/>
+  
+  <path id="dashb.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="dashb.module.production.classpath">
+    <path refid="${module.jdk.classpath.dashb}"/>
+    <path refid="library.commons-collections-3.1.classpath"/>
+  </path>
+  
+  <path id="dashb.runtime.production.module.classpath">
+    <pathelement location="${dashb.output.dir}"/>
+    <path refid="library.commons-collections-3.1.classpath"/>
+  </path>
+  
+  <path id="dashb.module.classpath">
+    <path refid="${module.jdk.classpath.dashb}"/>
+    <pathelement location="${dashb.output.dir}"/>
+    <path refid="library.commons-collections-3.1.classpath"/>
+  </path>
+  
+  <path id="dashb.runtime.module.classpath">
+    <pathelement location="${dashb.testoutput.dir}"/>
+    <pathelement location="${dashb.output.dir}"/>
+    <path refid="library.commons-collections-3.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.dashb">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.dashb">
+    <patternset refid="excluded.from.module.dashb"/>
+  </patternset>
+  
+  <path id="dashb.module.sourcepath">
+    <dirset dir="${module.dashb.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.dashb" depends="compile.module.dashb.production,compile.module.dashb.tests" description="Compile module DashB"/>
+  
+  <target name="compile.module.dashb.production" depends="register.custom.compilers" description="Compile module DashB; production classes">
+    <mkdir dir="${dashb.output.dir}"/>
+    <javac2 destdir="${dashb.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.dashb}/javac">
+      <compilerarg line="${compiler.args.dashb}"/>
+      <bootclasspath refid="dashb.module.bootclasspath"/>
+      <classpath refid="dashb.module.production.classpath"/>
+      <src refid="dashb.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.dashb"/>
+    </javac2>
+    
+    <copy todir="${dashb.output.dir}">
+      <fileset dir="${module.dashb.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.dashb.tests" depends="register.custom.compilers,compile.module.dashb.production" description="compile module DashB; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.dashb" description="cleanup module">
+    <delete dir="${dashb.output.dir}"/>
+    <delete dir="${dashb.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.dashb" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.dashb" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.dashb" value="${basedir}/out/artifacts/dashB"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.dashB.jar" value="${artifacts.temp.dir}/dashB.jar"/>
+  </target>
+  
+  <target name="artifact.dashb" depends="init.artifacts, compile.module.dashb" description="Build &#39;dashB&#39; artifact">
+    <property name="artifact.temp.output.dashb" value="${artifacts.temp.dir}/dashB"/>
+    <mkdir dir="${artifact.temp.output.dashb}"/>
+    <jar destfile="${temp.jar.path.dashB.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${dashb.output.dir}"/>
+      <zipfileset file="${basedir}/../library/dashb/commons-collections-3.1.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/commons-configuration-1.5.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/commons-digester-1.8.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/commons-lang-2.4.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/commons-logging.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/eclipselink.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/flex-messaging-core-3.2.0.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/gson-2.2.2.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/java-json.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/javax.persistence.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/jcl-over-slf4j-1.7.2.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/jetlang-0.2.0.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/json-simple-1.1.1.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/log4j-1.2.16.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/netty-all-4.0.30.Final.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/postgresql-9.4-1201.jdbc4.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/slf4j-log4j12-1.6.1.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/slf4j.api-1.6.1.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/spring-aop-3.1.0.RELEASE.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/spring-beans-3.1.0.RELEASE.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/spring-context-3.1.0.RELEASE.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/spring-core-3.1.0.RELEASE.jar"/>
+      <zipfileset file="${basedir}/../library/dashb/spring-expression-3.1.0.RELEASE.jar"/>
+      <zipfileset file="${basedir}/src/META-INF/persistence.xml" prefix="META-INF"/>
+    </jar>
+    <copy file="${temp.jar.path.dashB.jar}" tofile="${artifact.temp.output.dashb}/dashB.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.dashb" description="Build all artifacts">
+    <mkdir dir="${artifact.output.dashb}"/>
+    <copy todir="${artifact.output.dashb}">
+      <fileset dir="${artifact.temp.output.dashb}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

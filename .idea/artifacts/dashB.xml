@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="dashB">
+    <output-path>$PROJECT_DIR$/out/artifacts/dashB</output-path>
+    <root id="archive" name="dashB.jar">
+      <element id="module-output" name="DashB" />
+      <element id="library" level="project" name="commons-collections-3.1" />
+      <element id="jpa-descriptors" facet="DashB/jpa/JPA" />
+    </root>
+  </artifact>
+</component>

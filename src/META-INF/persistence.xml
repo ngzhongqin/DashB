@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+<persistence-unit name="pssdash">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.dashb.framework.database.entity.TaskEntity</class>
+    <class>com.dashb.framework.database.entity.SslEntity</class>
+    <properties>
+        <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/pssdash"/>
+        <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>
+        <property name="eclipselink.jdbc.user" value="ownpss"/>
+        <property name="eclipselink.jdbc.password" value="Abcd1234"/>
+    </properties>
+</persistence-unit>
+</persistence>

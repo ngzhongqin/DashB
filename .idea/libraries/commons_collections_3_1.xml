@@ -1,0 +1,33 @@
+<component name="libraryTable">
+  <library name="commons-collections-3.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../library/dashb/commons-collections-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/commons-configuration-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/commons-digester-1.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/commons-lang-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/commons-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/eclipselink.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/flex-messaging-core-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/gson-2.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/java-json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/javax.persistence.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/jcl-over-slf4j-1.7.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/jetlang-0.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/json-simple-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/log4j-1.2.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/netty-all-4.0.30.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/postgresql-9.4-1201.jdbc4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/slf4j-log4j12-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/slf4j.api-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/spring-aop-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/spring-beans-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/spring-context-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/spring-core-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/dashb/spring-expression-3.1.0.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../library/dashb/java-json.jar!/" />
+    </SOURCES>
+  </library>
+</component>

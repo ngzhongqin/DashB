@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="PostgreSQL - pssdash@localhost" uuid="99d3d6f0-826b-49a8-9f35-d1082170c8d3">
+    <database-info product="PostgreSQL" version="9.4.4" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
+    <schema name="pssdash" catalog="pssdash"/>
+    <table name="ssl" schema="pssdash" catalog="pssdash" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgncHNzZGFzaC5zc2xfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="po" sqlType="varchar" precision="40" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="postatus" sqlType="varchar" precision="20" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="country" sqlType="varchar" precision="10" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="environment" sqlType="varchar" precision="10" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="application" sqlType="varchar" precision="10" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="server" sqlType="varchar" precision="20" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="organization" sqlType="varchar" precision="100" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="organizational_unit" sqlType="varchar" precision="100" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="common_name" sqlType="varchar" precision="100" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="start_date" sqlType="date" precision="13" scale="0" nullable="true" jdbcType="91"/>
+      <column name="end_date" sqlType="date" precision="13" scale="0" nullable="true" jdbcType="91"/>
+      <column name="key_strength" sqlType="varchar" precision="10" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="cert_type" sqlType="varchar" precision="10" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="team_involved" sqlType="varchar" precision="100" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="datedue" sqlType="date" precision="13" scale="0" nullable="true" jdbcType="91"/>
+      <column name="owner" sqlType="varchar" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="ssl_pkey" columns="id"/>
+    </table>
+    <table name="ssl_id_seq" schema="pssdash" catalog="pssdash" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="task" schema="pssdash" catalog="pssdash" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgncHNzZGFzaC50YXNrX2lkX3NlcSc6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="description" sqlType="varchar" precision="1000" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="remarks" sqlType="varchar" precision="1000" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="defect" sqlType="varchar" precision="10" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="incident" sqlType="varchar" precision="20" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="status" sqlType="varchar" precision="10" scale="0" nullable="true" jdbcType="12" def="TlVMTA=="/>
+      <column name="createddt" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
+      <column name="datedue" sqlType="date" precision="13" scale="0" nullable="true" jdbcType="91"/>
+      <column name="owner" sqlType="varchar" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="task_pkey" columns="id"/>
+    </table>
+    <table name="task_id_seq" schema="pssdash" catalog="pssdash" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+  </data-source>
+</component>
