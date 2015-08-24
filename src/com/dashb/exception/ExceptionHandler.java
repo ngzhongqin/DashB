@@ -1,5 +1,6 @@
 package com.dashb.exception;
 
+import com.dashb.framework.vo.UserVO;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

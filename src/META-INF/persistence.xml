@@ -5,6 +5,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.dashb.framework.database.entity.TaskEntity</class>
     <class>com.dashb.framework.database.entity.SslEntity</class>
+    <class>com.dashb.framework.database.entity.UserEntity</class>
+    <class>com.dashb.framework.database.entity.SessionEntity</class>
     <properties>
         <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/pssdash"/>
         <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>

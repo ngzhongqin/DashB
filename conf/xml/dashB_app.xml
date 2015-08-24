@@ -2,19 +2,24 @@
 <CONFIGURATION>
 	<ALL_SERVICES>
 		<SERVICE>
-				<SERVICE_ID>tasks</SERVICE_ID>
-				<CLASS_NAME>com.dashb.handler.TaskListHandler</CLASS_NAME>
-				<QUERY></QUERY>
+            <SERVICE_ID>tasks</SERVICE_ID>
+            <CLASS_NAME>com.dashb.handler.TaskListHandler</CLASS_NAME>
+            <QUERY></QUERY>
 		</SERVICE>
 		<SERVICE>
-				<SERVICE_ID>ssls</SERVICE_ID>
-				<CLASS_NAME>com.dashb.handler.SslHandler</CLASS_NAME>
-				<QUERY></QUERY>
+            <SERVICE_ID>ssls</SERVICE_ID>
+            <CLASS_NAME>com.dashb.handler.SslHandler</CLASS_NAME>
+            <QUERY></QUERY>
 		</SERVICE>
 		<SERVICE>
-				<SERVICE_ID>custstat</SERVICE_ID>
-				<CLASS_NAME>com.dashb.handler.CustStatisticsHandler</CLASS_NAME>
-				<QUERY></QUERY>
+			<SERVICE_ID>signup</SERVICE_ID>
+			<CLASS_NAME>com.dashb.handler.signup.SignUpHandler</CLASS_NAME>
+			<QUERY></QUERY>
+		</SERVICE>
+		<SERVICE>
+            <SERVICE_ID>custstat</SERVICE_ID>
+            <CLASS_NAME>com.dashb.handler.CustStatisticsHandler</CLASS_NAME>
+            <QUERY></QUERY>
 		</SERVICE>
 	</ALL_SERVICES>
 </CONFIGURATION>
