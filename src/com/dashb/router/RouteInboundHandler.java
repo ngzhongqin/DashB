@@ -48,7 +48,7 @@ public class RouteInboundHandler implements ChannelInboundHandler {
 				ServiceVO serviceVO =  confg.getServiceClass(uri);
 //				logger.info("serviceVo: "+serviceVO.getServiceClass());
 				
-				Router router = new Router(fullHttpRequest.getUri());
+				Router router = new Router(fullHttpRequest.getUri(),pesistenceManager);
 	            logger.info("URI: "+router.getUri());
 	            logger.info("PATH: "+router.getPath());
 	            logger.info("PARAMS: "+router.getParameters());

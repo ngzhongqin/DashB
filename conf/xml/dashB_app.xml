@@ -21,5 +21,15 @@
             <CLASS_NAME>com.dashb.handler.CustStatisticsHandler</CLASS_NAME>
             <QUERY></QUERY>
 		</SERVICE>
+        <SERVICE>
+            <SERVICE_ID>login</SERVICE_ID>
+            <CLASS_NAME>com.dashb.handler.login.LoginHandler</CLASS_NAME>
+            <QUERY></QUERY>
+        </SERVICE>
+        <SERVICE>
+            <SERVICE_ID>session</SERVICE_ID>
+            <CLASS_NAME>com.dashb.handler.session.SessionHandler</CLASS_NAME>
+            <QUERY></QUERY>
+        </SERVICE>
 	</ALL_SERVICES>
 </CONFIGURATION>

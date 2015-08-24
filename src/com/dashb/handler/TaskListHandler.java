@@ -37,7 +37,7 @@ public class TaskListHandler {
 
     public void router(ChannelHandlerContext ctx, FullHttpRequest req){
 
-        Router router = new Router(req.getUri());
+        Router router = new Router(req.getUri(),persistenceManager);
         String action = router.getAction();
         int task_id = router.getParamInt("task");
         Map<String,List<String>> params = router.getParameters();

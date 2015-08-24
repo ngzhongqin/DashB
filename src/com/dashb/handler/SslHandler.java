@@ -41,7 +41,7 @@ public class SslHandler {
 
     public void router(ChannelHandlerContext ctx, FullHttpRequest req){
 
-        Router router = new Router(req.getUri());
+        Router router = new Router(req.getUri(),persistenceManager);
         String action = router.getAction();
         int ssl_id = router.getParamInt("ssl");
         Map<String,List<String>> params = router.getParameters();

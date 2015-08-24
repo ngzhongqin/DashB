@@ -1,5 +1,8 @@
 package com.dashb.router;
 
+import com.dashb.framework.database.PersistenceManager;
+import com.dashb.framework.database.dao.UserDAO;
+import com.dashb.framework.vo.UserVO;
 import io.netty.handler.codec.http.QueryStringDecoder;
 import org.apache.log4j.Logger;
 
@@ -13,9 +16,11 @@ import java.util.Map;
 public class Router {
     public Logger logger = Logger.getLogger(Router.class);
     private QueryStringDecoder queryStringDecoder;
+    private PersistenceManager persistenceManager;
 
-    public Router(String uri){
+    public Router(String uri, PersistenceManager persistenceManager){
         this.queryStringDecoder = new QueryStringDecoder(uri);
+        this.persistenceManager = persistenceManager;
     };
 
     public String getUri(){
@@ -57,5 +62,21 @@ public class Router {
         return actionString;
     }
 
+    public String getSession() {
+        String sessionString = null;
+        //setting action
+        try {
+            sessionString = getParameters().get("session_id").get(0);
+        }catch (Exception e){
+            logger.error("sessionString ERROR: "+e.getMessage());
+        }
 
+        return sessionString;
+    }
+
+    public UserVO getUser(){
+        String session_id = getSession();
+        UserDAO userDAO = new UserDAO(persistenceManager);
+        return userDAO.getUserFromSessionId(session_id);
+    }
 }

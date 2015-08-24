@@ -34,7 +34,7 @@ public class SignUpHandler {
 
     public void router(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest){
 
-        Router router = new Router(fullHttpRequest.getUri());
+        Router router = new Router(fullHttpRequest.getUri(),persistenceManager);
         String action = router.getAction();
         Map<String,List<String>> params = router.getParameters();
 
