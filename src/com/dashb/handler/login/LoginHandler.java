@@ -85,11 +85,11 @@ public class LoginHandler {
                     JSONHelper jsonHelper = new JSONHelper();
 
                     JSONObject data = jsonHelper.getJSONObject(incoming,"data");
-                    String email = jsonHelper.getString(data, "email");
+                    String lanId = jsonHelper.getString(data, "lanId");
                     String password = jsonHelper.getString(data,"password");
 
                     UserDAO userDAO = new UserDAO(persistenceManager);
-                    UserVO userVO = userDAO.getUser(email);
+                    UserVO userVO = userDAO.getUser(lanId);
                     logger.info("login: userVO:"+userVO);
                     if(userVO!=null){
                         logger.info("login: userVO: "+userVO.getFull_name());
@@ -101,7 +101,7 @@ public class LoginHandler {
                             //validate password
                             PasswordHash passwordHash = new PasswordHash();
                             isPasswordCorrect = passwordHash.validatePassword(password,userVO.getPassword_salt_hash());
-                            logger.info("login: email:"+email+" isPasswordCorrect="+isPasswordCorrect);
+                            logger.info("login: lanId:"+lanId+" isPasswordCorrect="+isPasswordCorrect);
                         } catch (NoSuchAlgorithmException e) {
                             e.printStackTrace();
                         } catch (InvalidKeySpecException e) {

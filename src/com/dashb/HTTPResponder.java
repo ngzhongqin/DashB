@@ -91,7 +91,7 @@ public class HTTPResponder {
             JSONObject userJSON = new JSONObject();
             try {
                 userJSON.put("full_name",userVO.getFull_name());
-                userJSON.put("email",userVO.getEmail());
+                userJSON.put("lanId",userVO.getLanId());
                 jsonObject.put("user",userJSON);
             } catch (JSONException e) {
                 logger.error("addUserVoIntoResponseJSONObject: setting userJSON exception: "+e.getMessage());

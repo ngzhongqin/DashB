@@ -7,7 +7,7 @@ package com.dashb.framework.vo;
 public class UserVO {
     private Long id;
     private String full_name;
-    private String email;
+    private String lanId;
     private String password_salt_hash;
 
     public UserVO(){
@@ -16,19 +16,19 @@ public class UserVO {
 
     public UserVO(Long id,
                   String full_name,
-                  String email,
+                  String lanId,
                   String password_salt_hash){
         this.id=id;
         this.full_name = full_name;
-        this.email = email;
+        this.lanId = lanId;
         this.password_salt_hash = password_salt_hash;
     }
 
     public UserVO(String full_name,
-                  String email,
+                  String lanId,
                   String password_salt_hash){
         this.full_name = full_name;
-        this.email = email;
+        this.lanId = lanId;
         this.password_salt_hash = password_salt_hash;
     }
 
@@ -40,12 +40,12 @@ public class UserVO {
         this.full_name = full_name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLanId() {
+        return lanId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLanId(String lanId) {
+        this.lanId = lanId;
     }
 
     public String getPassword_salt_hash() {

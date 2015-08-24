@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user", schema = "pssdash", catalog = "pssdash")
 public class UserEntity {
-    private String email;
+    private String lanId;
     private String full_name;
     private String password_salt_hash;
 
@@ -37,13 +37,13 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "email")
-    public String getEmail() {
-        return email;
+    @Column(name = "lanId")
+    public String getLanId() {
+        return lanId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLanId(String lanId) {
+        this.lanId = lanId;
     }
 
     @Basic
@@ -64,7 +64,7 @@ public class UserEntity {
         UserEntity that = (UserEntity) o;
 
         if (id != that.id) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (lanId != null ? !lanId.equals(that.lanId) : that.lanId != null) return false;
 
         return true;
     }

@@ -24,7 +24,7 @@ public class UserDAO {
     public UserVO createNewUser(UserVO userVO){
         EntityTransaction tx = persistenceManager.getEm().getTransaction();
         UserEntity userEntity = new UserEntity();
-        userEntity.setEmail(userVO.getEmail());
+        userEntity.setLanId(userVO.getLanId());
         userEntity.setFull_name(userVO.getFull_name());
         userEntity.setPassword_salt_hash(userVO.getPassword_salt_hash());
         tx.begin();
@@ -35,34 +35,18 @@ public class UserDAO {
         return userVO;
     }
 
-    public boolean checkIfEmailIsTaken(String email){
-        boolean returnBoolean = false;
-
-        List<UserEntity> userEntityArrayList =
-                persistenceManager.getEm().createQuery("select u from UserEntity u where u.email = :email")
-                        .setParameter("email", email)
-                        .getResultList();
-
-        if(userEntityArrayList.size()>0){
-            logger.info("checkIfEmailIsTaken: email:"+email+" is taken");
-            returnBoolean =true;
-        }
-
-        return returnBoolean;
-    }
-
-    public UserVO getUser(String email){
+    public UserVO getUser(String lanId){
         UserVO userVO = null;
         try {
             UserEntity userEntity =
                     (UserEntity) persistenceManager.getEm()
-                            .createQuery("SELECT u FROM UserEntity u where u.email= :email")
-                            .setParameter("email", email)
+                            .createQuery("SELECT u FROM UserEntity u where u.lanId= :lanId")
+                            .setParameter("lanId", lanId)
                             .getSingleResult();
             if(userEntity!=null){
                 userVO = new UserVO(userEntity.getId(),
                         userEntity.getFull_name(),
-                        userEntity.getEmail(),
+                        userEntity.getLanId(),
                         userEntity.getPassword_salt_hash());
             }
         }catch (Exception e){
@@ -84,7 +68,7 @@ public class UserDAO {
             if(userEntity!=null){
                 userVO = new UserVO(userEntity.getId(),
                         userEntity.getFull_name(),
-                        userEntity.getEmail(),
+                        userEntity.getLanId(),
                         userEntity.getPassword_salt_hash());
             }
         }catch (Exception e){
@@ -94,5 +78,20 @@ public class UserDAO {
         return userVO;
     }
 
+    public boolean checkIfLANIDisTaken(String lanId) {
+        boolean returnBoolean = false;
+
+        List<UserEntity> userEntityArrayList =
+                persistenceManager.getEm().createQuery("select u from UserEntity u where u.lanId = :lanId")
+                        .setParameter("lanId", lanId)
+                        .getResultList();
+
+        if(userEntityArrayList.size()>0){
+            logger.info("checkIfLANIDisTaken: lanId:"+lanId+" is taken");
+            returnBoolean =true;
+        }
+
+        return returnBoolean;
+    }
 }
 

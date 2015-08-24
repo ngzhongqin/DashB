@@ -68,21 +68,22 @@ public class SignUpHandler {
                     JSONObject incoming = new JSONObject(reqString);
                     JSONObject data = (JSONObject) incoming.get("data");
 
-                    String email = (String) data.get("email");
+                    String lanid = (String) data.get("lanId");
                     String password = (String) data.get("password");
                     String full_name = (String) data.get("full_name");
 
 
                     UserDAO userDAO = new UserDAO(persistenceManager);
-                    boolean checkIfEmailIsTaken = userDAO.checkIfEmailIsTaken(email);
-                    if(!checkIfEmailIsTaken){
+                    boolean checkIfLANIDistaken = userDAO.checkIfLANIDisTaken(lanid);
+                    //boolean checkIfEmailIsTaken = userDAO.checkIfEmailIsTaken(email);
+                    if(!checkIfLANIDistaken){
                         String password_salt_hash;
 
                         PasswordHash passwordHash = new PasswordHash();
                         try {
 
                             password_salt_hash=passwordHash.createHash(password);
-                            userVO = new UserVO(full_name,email,password_salt_hash);
+                            userVO = new UserVO(full_name,lanid,password_salt_hash);
                             userVO = userDAO.createNewUser(userVO);
 
                             UUIDGenerator uuidGenerator = new UUIDGenerator();
