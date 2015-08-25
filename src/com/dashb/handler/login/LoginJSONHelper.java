@@ -59,4 +59,32 @@ public class LoginJSONHelper {
 
         return returnJsonObject;
     }
+
+    public JSONObject getJSONChangePasswordSuccess() {
+        JSONObject jsonObject = new JSONObject();
+        JSONObject returnJsonObject = new JSONObject();
+        try {
+            jsonObject.put("code","SEC-105");
+            jsonObject.put("message","Change Password Successful");
+            returnJsonObject.put("data",jsonObject);
+        } catch (JSONException e) {
+            logger.error("getJSONLoginSuccess ERROR:" + e.getMessage());
+        }
+
+        return returnJsonObject;
+    }
+
+    public JSONObject getJSONChangePasswordFailed() {
+        JSONObject jsonObject = new JSONObject();
+        JSONObject returnJsonObject = new JSONObject();
+        try {
+            jsonObject.put("code","SEC-106");
+            jsonObject.put("message","Change Password Failed");
+            returnJsonObject.put("data",jsonObject);
+        } catch (JSONException e) {
+            logger.error("getJSONLoginSuccess ERROR:" + e.getMessage());
+        }
+
+        return returnJsonObject;
+    }
 }

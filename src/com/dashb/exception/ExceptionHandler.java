@@ -25,7 +25,7 @@ public class ExceptionHandler {
         	JSONObject jsonObject = new JSONObject();
             jsonObject.put("message",message);
             jsonObject.put("code",code);
-            jsonObjectStatus.put("status", jsonObject);
+            jsonObjectStatus.put("returnStatus", jsonObject);
             jsonObjectmain.put("data",jsonObjectStatus);
         } catch (JSONException e) {
             e.printStackTrace();

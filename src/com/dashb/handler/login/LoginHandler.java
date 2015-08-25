@@ -1,6 +1,7 @@
 package com.dashb.handler.login;
 
 import com.dashb.HTTPResponder;
+import com.dashb.exception.ExceptionHandler;
 import com.dashb.framework.UUIDGenerator;
 import com.dashb.framework.database.PersistenceManager;
 import com.dashb.framework.database.dao.SessionDAO;
@@ -68,18 +69,95 @@ public class LoginHandler {
             if("ChangePassword".equals(action)){
                 logger.info("Action = ChangePassword");
                 if(userVO!=null){
-                    change_password(ctx, fullHttpRequest);
+                    change_password(ctx, fullHttpRequest,userVO);
                     return;
                 }else{
-
+                    ExceptionHandler exceptionHandler = new ExceptionHandler();
+                    exceptionHandler.handleNoSessionFoundException(ctx,fullHttpRequest);
                 }
-
             }
 
         }
     }
 
-    private void change_password(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest) {
+    private void change_password(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest, UserVO userVO) {
+        logger.info("Method: change_password");
+        logger.info("content:"+fullHttpRequest.content().toString(CharsetUtil.UTF_8));
+        PasswordHash passwordHash = new PasswordHash();
+        boolean changePasswordBoolean = false;
+        String reqString = fullHttpRequest.content().toString(CharsetUtil.UTF_8);
+
+        try {
+            if(reqString!=null) {
+                if(!reqString.isEmpty()) {
+                    JSONObject incoming = new JSONObject(reqString);
+
+                    JSONHelper jsonHelper = new JSONHelper();
+
+                    JSONObject data = jsonHelper.getJSONObject(incoming, "data");
+                    String old_password = jsonHelper.getString(data, "old_password");
+                    String new_password = jsonHelper.getString(data, "new_password");
+
+
+
+
+                    logger.info("change_password: userVO:"+userVO);
+                    if(userVO!=null){
+                        logger.info("change_password: userVO: "+userVO.getFull_name());
+                    }
+                    //check if there is such user
+                    if(userVO!=null){
+                        boolean isPasswordCorrect = false;
+                        try {
+                            //validate password
+
+                            isPasswordCorrect = passwordHash.validatePassword(old_password,userVO.getPassword_salt_hash());
+                            logger.info("login: lanId:"+userVO.getLanId()+" isPasswordCorrect="+isPasswordCorrect);
+                        } catch (NoSuchAlgorithmException e) {
+                            e.printStackTrace();
+                        } catch (InvalidKeySpecException e) {
+                            e.printStackTrace();
+                        }
+
+                        //if Password is correct
+                        if(isPasswordCorrect){
+                            try {
+                                String new_password_salt_hash=passwordHash.createHash(new_password);
+                                UserDAO userDAO = new UserDAO(persistenceManager);
+                                changePasswordBoolean = userDAO.changePassword(userVO,new_password_salt_hash);
+
+                            } catch (NoSuchAlgorithmException e) {
+                                logger.error("change_password: NoSuchAlgorithmException:"+e.getMessage());
+                            } catch (InvalidKeySpecException e) {
+                                logger.error("change_password: InvalidKeySpecException:"+e.getMessage());
+                            }
+
+                            JSONObject returnJSONObject = new JSONObject();
+                            if(changePasswordBoolean){
+                                logger.info("ChangePassword - changePasswordBoolean:"+changePasswordBoolean);
+                                returnJSONObject = loginJSONHelper.getJSONChangePasswordSuccess();
+                            }else{
+                                logger.info("ChangePassword - changePasswordBoolean:"+changePasswordBoolean);
+                                returnJSONObject = loginJSONHelper.getJSONChangePasswordFailed();
+                            }
+
+                            httpResponder.respond(ctx,fullHttpRequest,returnJSONObject,userVO);
+                            return;
+                        }
+
+                    }
+
+                    httpResponder.respond(ctx,fullHttpRequest,loginJSONHelper.getJSONChangePasswordFailed(),userVO);
+
+                }else{
+                    logger.info("INCOMING REQUEST IS EMPTY!");
+                }
+            }
+        } catch (JSONException e) {
+            logger.error("incoming reqString that caused error: "+reqString);
+            e.printStackTrace();
+        }
+
     }
 
     private void checkSession(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest) {

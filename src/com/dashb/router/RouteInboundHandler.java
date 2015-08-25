@@ -66,7 +66,7 @@ public class RouteInboundHandler implements ChannelInboundHandler {
 			} catch (Exception e) {
 				e.printStackTrace();
 				ExceptionHandler exceptionHandler = new ExceptionHandler();
-				exceptionHandler.handleException(ctx, fullHttpRequest,"PSS-119",e.getMessage());
+				exceptionHandler.handleException(ctx, fullHttpRequest,"PSS-119","General Exception");
 			}
 	}
     

@@ -93,5 +93,24 @@ public class UserDAO {
 
         return returnBoolean;
     }
+
+    public boolean changePassword(UserVO userVO,String new_password_hash){
+        boolean returnBoolean = false;
+        UserEntity userEntity =
+                (UserEntity) persistenceManager.getEm()
+                        .createQuery("SELECT u FROM UserEntity u where u.lanId= :lanId")
+                        .setParameter("lanId", userVO.getLanId())
+                        .getSingleResult();
+        if(userEntity!=null){
+            userEntity.setPassword_salt_hash(new_password_hash);
+            EntityTransaction tx = persistenceManager.getEm().getTransaction();
+            tx.begin();
+            persistenceManager.getEm().persist(userEntity);
+            tx.commit();
+            returnBoolean = true;
+        }
+
+        return returnBoolean;
+    }
 }
 
