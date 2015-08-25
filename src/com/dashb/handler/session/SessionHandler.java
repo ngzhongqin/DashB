@@ -1,6 +1,7 @@
 package com.dashb.handler.session;
 
 import com.dashb.HTTPResponder;
+import com.dashb.exception.ExceptionHandler;
 import com.dashb.framework.database.PersistenceManager;
 import com.dashb.framework.helper.JSONHelper;
 import com.dashb.framework.vo.UserVO;
@@ -60,7 +61,13 @@ public class SessionHandler {
         logger.info("Method: getCurrentUser");
         boolean check = jsonHelper.checkIfRequestIsEmpty(fullHttpRequest);
         JSONObject replyJSON = new JSONObject();
-        httpResponder.respond(ctx,fullHttpRequest,replyJSON, userVO);
+        if(userVO==null){
+            ExceptionHandler exceptionHandler = new ExceptionHandler();
+            exceptionHandler.handleException(ctx, fullHttpRequest, "SEC-104","No Session Found");
+        }else{
+            httpResponder.respond(ctx,fullHttpRequest,replyJSON, userVO);
+        }
+
 
     }
 

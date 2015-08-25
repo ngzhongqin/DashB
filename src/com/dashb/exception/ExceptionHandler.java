@@ -18,18 +18,23 @@ public class ExceptionHandler {
 	        this.httpResponder = new HTTPResponder();
 	    }
 
-	public void handleException(ChannelHandlerContext ctx,FullHttpRequest fullHttpRequest,String execMessage) {
+	public void handleException(ChannelHandlerContext ctx,FullHttpRequest fullHttpRequest,String code, String message) {
 		 JSONObject jsonObjectmain = new JSONObject();
+        JSONObject jsonObjectStatus = new JSONObject();
         try {
         	JSONObject jsonObject = new JSONObject();
-            JSONArray jsonArray = new JSONArray();
-            jsonObject.put("Exception",execMessage);
-            jsonArray.put(jsonObject);
-            jsonObjectmain.put("data", jsonArray);
+            jsonObject.put("message",message);
+            jsonObject.put("code",code);
+            jsonObjectStatus.put("status", jsonObject);
+            jsonObjectmain.put("data",jsonObjectStatus);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         httpResponder.respond(ctx,fullHttpRequest,jsonObjectmain);
 	}
+
+    public void handleNoSessionFoundException(ChannelHandlerContext ctx,FullHttpRequest fullHttpRequest){
+        handleException(ctx, fullHttpRequest, "SEC-104", "No Session Found");
+    }
 
 }

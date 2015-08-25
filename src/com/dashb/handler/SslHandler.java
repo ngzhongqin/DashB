@@ -1,9 +1,11 @@
 package com.dashb.handler;
 
+import com.dashb.exception.ExceptionHandler;
 import com.dashb.framework.database.dao.SslDAO;
 import com.dashb.framework.database.entity.SslEntity;
 import com.dashb.framework.helper.SslJSONHelper;
 import com.dashb.framework.vo.SslVO;
+import com.dashb.framework.vo.UserVO;
 import com.dashb.router.Router;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -44,32 +46,47 @@ public class SslHandler {
         Router router = new Router(req.getUri(),persistenceManager);
         String action = router.getAction();
         int ssl_id = router.getParamInt("ssl");
+        UserVO userVO = router.getUser();
+
         Map<String,List<String>> params = router.getParameters();
 
 
         if(params.isEmpty()){
-            /* URI = /tasks/   */
-            getAll(ctx,req);
+
+
         }else{
+
+            if(userVO!=null){
+                if("GetSSLs".equals(action)){
+                    logger.info("Action = GetSSLs");
+                    getAll(ctx,req);
+                    return;
+                }
+
             /* URI = /tasks?action=View&task={number}   */
-            if("View".equals(action)){
-                logger.info("Action = View");
-                getSsl(ctx, req, ssl_id);
-                return;
-            }
+                if("View".equals(action)){
+                    logger.info("Action = View");
+                    getSsl(ctx, req, ssl_id);
+                    return;
+                }
 
-            if("Update".equals(action)){
-                logger.info("Action = Update");
-                updateSsl(ctx, req, ssl_id);
-                return;
-            }
+                if("Update".equals(action)){
+                    logger.info("Action = Update");
+                    updateSsl(ctx, req, ssl_id);
+                    return;
+                }
 
-            if("New".equals(action)){
-                logger.info("Action = New");
-                newSsl(ctx, req);
-                return;
-            }
+                if("New".equals(action)){
+                    logger.info("Action = New");
+                    newSsl(ctx, req);
+                    return;
+                }
 
+            }else{
+                logger.info("No Session Found: session_id:"+router.getSession());
+                ExceptionHandler exceptionHandler = new ExceptionHandler();
+                exceptionHandler.handleNoSessionFoundException(ctx, req);
+            }
         }
     }
 

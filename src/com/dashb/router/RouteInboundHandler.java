@@ -61,12 +61,12 @@ public class RouteInboundHandler implements ChannelInboundHandler {
                     method.invoke(o1,ctx,fullHttpRequest);
 				}else{
 					ExceptionHandler exceptionHandler = new ExceptionHandler();
-					exceptionHandler.handleException(ctx, fullHttpRequest,"Service Not found");
+					exceptionHandler.handleException(ctx, fullHttpRequest,"PSS-119","Service Not found");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				ExceptionHandler exceptionHandler = new ExceptionHandler();
-				exceptionHandler.handleException(ctx, fullHttpRequest,e.getMessage());
+				exceptionHandler.handleException(ctx, fullHttpRequest,"PSS-119",e.getMessage());
 			}
 	}
     

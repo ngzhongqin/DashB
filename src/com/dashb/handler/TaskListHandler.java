@@ -1,5 +1,7 @@
 package com.dashb.handler;
 
+import com.dashb.exception.ExceptionHandler;
+import com.dashb.framework.vo.UserVO;
 import com.dashb.router.Router;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -40,30 +42,43 @@ public class TaskListHandler {
         Router router = new Router(req.getUri(),persistenceManager);
         String action = router.getAction();
         int task_id = router.getParamInt("task");
+        UserVO userVO = router.getUser();
         Map<String,List<String>> params = router.getParameters();
 
 
         if(params.isEmpty()){
             /* URI = /tasks/   */
-            getAll(ctx,req);
+            //getAll(ctx,req);
         }else{
-            /* URI = /tasks?action=View&task={number}   */
-            if("View".equals(action)){
-                logger.info("Action = View");
-                getTask(ctx,req,task_id);
-                return;
-            }
+            if(userVO!=null){
+                           /* URI = /tasks?action=View&task={number}   */
+                if("GetTasks".equals(action)){
+                    logger.info("Action = GetTasks");
+                    getAll(ctx,req);
+                }
 
-            if("Update".equals(action)){
-                logger.info("Action = Update");
-                updateTask(ctx, req, task_id);
-                return;
-            }
+                if("View".equals(action)){
+                    logger.info("Action = View");
+                    getTask(ctx,req,task_id);
+                    return;
+                }
 
-            if("New".equals(action)){
-                logger.info("Action = New");
-                newTask(ctx, req);
-                return;
+                if("Update".equals(action)){
+                    logger.info("Action = Update");
+                    updateTask(ctx, req, task_id);
+                    return;
+                }
+
+                if("New".equals(action)){
+                    logger.info("Action = New");
+                    newTask(ctx, req);
+                    return;
+                }
+
+            }else{
+                logger.info("No Session Found: session_id:" + router.getSession());
+                ExceptionHandler exceptionHandler = new ExceptionHandler();
+                exceptionHandler.handleNoSessionFoundException(ctx,req);
             }
 
         }
@@ -150,9 +165,6 @@ public class TaskListHandler {
         JSONObject replyJSON = taskJSONHelper.getJSONObject(taskEntity);
 
         httpResponder.respond(ctx,fullHttpRequest,replyJSON);
-
-
-
 
     }
 

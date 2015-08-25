@@ -41,6 +41,7 @@ public class LoginHandler {
         String action = router.getAction();
         Map<String,List<String>> params = router.getParameters();
         String session_id = router.getSession();
+        UserVO userVO = router.getUser();
 
         if(params.isEmpty()){
             logger.info("No Params");
@@ -60,11 +61,25 @@ public class LoginHandler {
 
             if("Logout".equals(action)){
                 logger.info("Action = Logout");
-                logout(ctx, fullHttpRequest,session_id);
+                logout(ctx, fullHttpRequest, session_id);
                 return;
             }
 
+            if("ChangePassword".equals(action)){
+                logger.info("Action = ChangePassword");
+                if(userVO!=null){
+                    change_password(ctx, fullHttpRequest);
+                    return;
+                }else{
+
+                }
+
+            }
+
         }
+    }
+
+    private void change_password(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest) {
     }
 
     private void checkSession(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest) {
