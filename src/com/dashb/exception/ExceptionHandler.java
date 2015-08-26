@@ -18,23 +18,31 @@ public class ExceptionHandler {
 	        this.httpResponder = new HTTPResponder();
 	    }
 
-	public void handleException(ChannelHandlerContext ctx,FullHttpRequest fullHttpRequest,String code, String message) {
-		 JSONObject jsonObjectmain = new JSONObject();
+	public void handleException(ChannelHandlerContext ctx,FullHttpRequest fullHttpRequest,String code, String message, String colour) {
         JSONObject jsonObjectStatus = new JSONObject();
         try {
         	JSONObject jsonObject = new JSONObject();
             jsonObject.put("message",message);
             jsonObject.put("code",code);
+            jsonObject.put("colour",colour);
             jsonObjectStatus.put("returnStatus", jsonObject);
-            jsonObjectmain.put("data",jsonObjectStatus);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        httpResponder.respond(ctx,fullHttpRequest,jsonObjectmain);
+        httpResponder.respond(ctx,fullHttpRequest,jsonObjectStatus);
 	}
 
     public void handleNoSessionFoundException(ChannelHandlerContext ctx,FullHttpRequest fullHttpRequest){
-        handleException(ctx, fullHttpRequest, "SEC-104", "No Session Found");
+        handleException(ctx, fullHttpRequest, "SEC-104", "No Session Found", "R");
     }
+
+    public void handleUncaughtException(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest) {
+        handleException(ctx, fullHttpRequest, "PSS-119", "UncaughtException", "R");
+    }
+
+    public void handleNoServiceFoundException(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest){
+        handleException(ctx, fullHttpRequest,"PSS-119","Service Not found","R");
+    }
+
 
 }

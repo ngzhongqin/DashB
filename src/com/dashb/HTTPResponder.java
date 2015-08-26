@@ -27,62 +27,74 @@ public class HTTPResponder {
     public void respond(ChannelHandlerContext ctx, FullHttpRequest req, JSONObject jsonObject,UserVO userVO){
         logger.info("Method: respond with UserVO");
         jsonObject = addUserVoIntoResponseJSONObject(jsonObject,userVO);
+        JSONObject dataJSONObject = new JSONObject();
 
-        byte[] CONTENT = jsonObject.toString().getBytes(CharsetUtil.UTF_8);
+        try {
+            dataJSONObject.put("data",jsonObject);
+            byte[] CONTENT = dataJSONObject.toString().getBytes(CharsetUtil.UTF_8);
 
-        if (HttpHeaders.is100ContinueExpected(req)) {
-            ctx.write(new DefaultFullHttpResponse(HTTP_1_1, CONTINUE));
-        }
-        boolean keepAlive = HttpHeaders.isKeepAlive(req);
-        FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(CONTENT));
-
-
-        //TODO: To remove the below line in SIT, UAT then Production
-        response.headers().set("Access-Control-Allow-Origin", "*");
+            if (HttpHeaders.is100ContinueExpected(req)) {
+                ctx.write(new DefaultFullHttpResponse(HTTP_1_1, CONTINUE));
+            }
+            boolean keepAlive = HttpHeaders.isKeepAlive(req);
+            FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(CONTENT));
 
 
-        response.headers().set("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-        response.headers().set(CONTENT_TYPE, "application/json");
-        response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
+            //TODO: To remove the below line in SIT, UAT then Production
+            response.headers().set("Access-Control-Allow-Origin", "*");
 
-        if (!keepAlive) {
-            ctx.write(response).addListener(ChannelFutureListener.CLOSE);
-        } else {
-            response.headers().set(CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
 
-            logger.info("respond: "+response.content().toString(CharsetUtil.UTF_8));
-            ctx.write(response);
+            response.headers().set("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+            response.headers().set(CONTENT_TYPE, "application/json");
+            response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
+
+            if (!keepAlive) {
+                ctx.write(response).addListener(ChannelFutureListener.CLOSE);
+            } else {
+                response.headers().set(CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
+
+                logger.info("respond: "+response.content().toString(CharsetUtil.UTF_8));
+                ctx.write(response);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
 
     public void respond(ChannelHandlerContext ctx, FullHttpRequest req, JSONObject jsonObject){
         logger.info("Method: respond without UserVO");
+        JSONObject dataJSONObject = new JSONObject();
 
-        byte[] CONTENT = jsonObject.toString().getBytes(CharsetUtil.UTF_8);
+        try {
+            dataJSONObject.put("data",jsonObject);
+            byte[] CONTENT = dataJSONObject.toString().getBytes(CharsetUtil.UTF_8);
 
-        if (HttpHeaders.is100ContinueExpected(req)) {
-            ctx.write(new DefaultFullHttpResponse(HTTP_1_1, CONTINUE));
-        }
-        boolean keepAlive = HttpHeaders.isKeepAlive(req);
-        FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(CONTENT));
-
-
-        //TODO: To remove the below line in SIT, UAT then Production
-        response.headers().set("Access-Control-Allow-Origin", "*");
+            if (HttpHeaders.is100ContinueExpected(req)) {
+                ctx.write(new DefaultFullHttpResponse(HTTP_1_1, CONTINUE));
+            }
+            boolean keepAlive = HttpHeaders.isKeepAlive(req);
+            FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(CONTENT));
 
 
-        response.headers().set("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-        response.headers().set(CONTENT_TYPE, "application/json");
-        response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
+            //TODO: To remove the below line in SIT, UAT then Production
+            response.headers().set("Access-Control-Allow-Origin", "*");
 
-        if (!keepAlive) {
-            ctx.write(response).addListener(ChannelFutureListener.CLOSE);
-        } else {
-            response.headers().set(CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
 
-            logger.info("respond: "+response.content().toString(CharsetUtil.UTF_8));
-            ctx.write(response);
+            response.headers().set("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+            response.headers().set(CONTENT_TYPE, "application/json");
+            response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
+
+            if (!keepAlive) {
+                ctx.write(response).addListener(ChannelFutureListener.CLOSE);
+            } else {
+                response.headers().set(CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
+
+                logger.info("respond: "+response.content().toString(CharsetUtil.UTF_8));
+                ctx.write(response);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

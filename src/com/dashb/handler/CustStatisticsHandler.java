@@ -51,11 +51,11 @@ public class CustStatisticsHandler {
         } catch (JSONException e) {
             logger.error("incoming reqString that caused error: "+reqString);
             e.printStackTrace();
-            (new ExceptionHandler()).handleException(ctx, fullHttpRequest,"PSS-119" ,"incoming reqString that caused error");
+            (new ExceptionHandler()).handleUncaughtException(ctx, fullHttpRequest);
         } catch (Exception e){
         	logger.error("incoming reqString that caused error: "+reqString);
             e.printStackTrace();
-            (new ExceptionHandler()).handleException(ctx, fullHttpRequest,"PSS-119", "incoming reqString that caused error");
+            (new ExceptionHandler()).handleUncaughtException(ctx, fullHttpRequest);
         }
 
 

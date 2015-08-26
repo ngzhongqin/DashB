@@ -18,73 +18,111 @@ public class LoginJSONHelper {
     }
 
     public JSONObject getJSONLoginSuccess(SessionVO sessionVO){
+        JSONObject returnStatusJSONObject = new JSONObject();
+        JSONObject dataJSONObject = new JSONObject();
+
         JSONObject jsonObject = new JSONObject();
         JSONObject returnJsonObject = new JSONObject();
+
         try {
-            jsonObject.put("code","SEC-100");
-            jsonObject.put("message","Login Successful");
-            jsonObject.put("pssdash_session",sessionVO.getId());
-            returnJsonObject.put("data",jsonObject);
+            returnStatusJSONObject.put("colour","G");
+            returnStatusJSONObject.put("code","SEC-100");
+            returnStatusJSONObject.put("message","Login Successful");
+
+            dataJSONObject.put("pssdash_session",sessionVO.getId());
+
+            jsonObject.put("data",dataJSONObject);
+            jsonObject.put("returnStatus",returnStatusJSONObject);
+
+            //returnJsonObject.put("data",jsonObject);
+
         } catch (JSONException e) {
             logger.error("getJSONLoginSuccess ERROR:" + e.getMessage());
         }
 
-        return returnJsonObject;
+        return jsonObject;
     }
 
     public JSONObject getJSONLoginFailed(){
+        JSONObject returnStatusJSONObject = new JSONObject();
+        JSONObject dataJSONObject = new JSONObject();
+
         JSONObject jsonObject = new JSONObject();
         JSONObject returnJsonObject = new JSONObject();
         try {
-            jsonObject.put("code","SEC-101");
-            jsonObject.put("message","Login Failed - Incorrect Email or Password");
-            returnJsonObject.put("data",jsonObject);
+            returnStatusJSONObject.put("colour","R");
+            returnStatusJSONObject.put("code","SEC-101");
+            returnStatusJSONObject.put("message","Login Failed - Incorrect Email or Password");
+            jsonObject.put("returnStatus",returnStatusJSONObject);
+
+            //returnJsonObject.put("data",jsonObject);
         } catch (JSONException e) {
             logger.error("getJSONLoginFailed ERROR:" + e.getMessage());
         }
 
-        return returnJsonObject;
+        return jsonObject;
     }
 
     public JSONObject getJSONLogout() {
+        JSONObject returnStatusJSONObject = new JSONObject();
+        JSONObject dataJSONObject = new JSONObject();
+
         JSONObject jsonObject = new JSONObject();
         JSONObject returnJsonObject = new JSONObject();
         try {
-            jsonObject.put("code","SEC-103");
-            jsonObject.put("message","Logout Successful.");
-            returnJsonObject.put("data",jsonObject);
+            returnStatusJSONObject.put("colour","G");
+            returnStatusJSONObject.put("code","SEC-103");
+            returnStatusJSONObject.put("message","Logout Successful.");
+
+            jsonObject.put("returnStatus",returnStatusJSONObject);
+
+//            returnJsonObject.put("data",jsonObject);
         } catch (JSONException e) {
             logger.error("getJSONLogout ERROR:" + e.getMessage());
         }
 
-        return returnJsonObject;
+        return jsonObject;
     }
 
     public JSONObject getJSONChangePasswordSuccess() {
+        JSONObject returnStatusJSONObject = new JSONObject();
+        JSONObject dataJSONObject = new JSONObject();
+
         JSONObject jsonObject = new JSONObject();
         JSONObject returnJsonObject = new JSONObject();
         try {
-            jsonObject.put("code","SEC-105");
-            jsonObject.put("message","Change Password Successful");
-            returnJsonObject.put("data",jsonObject);
+            returnStatusJSONObject.put("colour","G");
+            returnStatusJSONObject.put("code","SEC-105");
+            returnStatusJSONObject.put("message","Change Password Successful");
+
+            jsonObject.put("returnStatus",returnStatusJSONObject);
+
+           // returnJsonObject.put("data",jsonObject);
         } catch (JSONException e) {
             logger.error("getJSONLoginSuccess ERROR:" + e.getMessage());
         }
 
-        return returnJsonObject;
+        return jsonObject;
     }
 
     public JSONObject getJSONChangePasswordFailed() {
+        JSONObject returnStatusJSONObject = new JSONObject();
+        JSONObject dataJSONObject = new JSONObject();
+
         JSONObject jsonObject = new JSONObject();
         JSONObject returnJsonObject = new JSONObject();
         try {
-            jsonObject.put("code","SEC-106");
-            jsonObject.put("message","Change Password Failed");
-            returnJsonObject.put("data",jsonObject);
+            returnStatusJSONObject.put("code","SEC-106");
+            returnStatusJSONObject.put("message","Change Password Failed");
+            returnStatusJSONObject.put("colour","R");
+
+            jsonObject.put("returnStatus",returnStatusJSONObject);
+
+           // returnJsonObject.put("data",jsonObject);
         } catch (JSONException e) {
             logger.error("getJSONLoginSuccess ERROR:" + e.getMessage());
         }
 
-        return returnJsonObject;
+        return jsonObject;
     }
 }

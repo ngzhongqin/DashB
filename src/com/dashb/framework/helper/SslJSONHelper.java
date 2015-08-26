@@ -47,16 +47,18 @@ public class SslJSONHelper {
             i++;
         }
         JSONObject jsonObject = new JSONObject();
+        JSONObject mainJsonObject = new JSONObject();
 
         try {
             jsonObject.put("data", jsonArray);
+            mainJsonObject.put("data",jsonObject);
 
         } catch (JSONException e) {
             logger.error("getJSONObject: error:"+e.getMessage());
             e.printStackTrace();
         }
 
-        return jsonObject;
+        return mainJsonObject;
     }
 
     private JSONObject loadSslEntityIntoJSON(SslEntity sslEntity){
@@ -92,14 +94,16 @@ public class SslJSONHelper {
     public JSONObject getJSONObject(SslEntity sslEntity) {
         JSONObject sslJSON = loadSslEntityIntoJSON(sslEntity);
         JSONObject returnJSONObject = new JSONObject();
+        JSONObject mainJSONObject = new JSONObject();
         try {
             returnJSONObject.put("data",sslJSON);
+            mainJSONObject.put("data",returnJSONObject);
         } catch (JSONException e) {
             logger.error("getJSONObject Single: error:"+e.getMessage());
             e.printStackTrace();
         }
 
-        return returnJSONObject;
+        return mainJSONObject;
     }
 
     public SslVO getSslVO(JSONObject incoming){

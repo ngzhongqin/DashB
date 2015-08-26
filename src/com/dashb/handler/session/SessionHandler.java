@@ -63,7 +63,7 @@ public class SessionHandler {
         JSONObject replyJSON = new JSONObject();
         if(userVO==null){
             ExceptionHandler exceptionHandler = new ExceptionHandler();
-            exceptionHandler.handleException(ctx, fullHttpRequest, "SEC-104","No Session Found");
+            exceptionHandler.handleNoSessionFoundException(ctx,fullHttpRequest);
         }else{
             httpResponder.respond(ctx,fullHttpRequest,replyJSON, userVO);
         }
