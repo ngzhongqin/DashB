@@ -60,7 +60,7 @@ public class SignUpHandler {
         UserVO userVO = null;
         String code = "SGU-101";
         String message = "Sign Up was unsuccessful.";
-        String winestory_session = null;
+        String pssdash_session = null;
 
         try {
             if(reqString!=null) {
@@ -95,7 +95,7 @@ public class SignUpHandler {
 
                             code = "SGU-100";
                             message = "Sign Up successful.";
-                            winestory_session = sessionVO.getId();
+                            pssdash_session = sessionVO.getId();
 
                         } catch (NoSuchAlgorithmException e) {
                             e.printStackTrace();
@@ -104,7 +104,7 @@ public class SignUpHandler {
                         }
                     }
 
-                    respond(ctx, req, code, message, winestory_session,userVO);
+                    respond(ctx, req, code, message, pssdash_session,userVO);
 
 
                 }else{
@@ -117,16 +117,21 @@ public class SignUpHandler {
         }
     }
 
-    private void respond(ChannelHandlerContext ctx, FullHttpRequest req, String code, String message, String winestory_session, UserVO userVO){
+    private void respond(ChannelHandlerContext ctx, FullHttpRequest req, String code, String message, String pssdash_session, UserVO userVO){
+        JSONObject returnStatusJsonObject = new JSONObject();
         JSONObject jsonObject = new JSONObject();
         JSONObject mainJsonObject = new JSONObject();
         try {
-            jsonObject.put("code",code);
-            jsonObject.put("message", message);
-            if(winestory_session!=null){
-                jsonObject.put("winestory_session",winestory_session);
+            returnStatusJsonObject.put("code",code);
+            returnStatusJsonObject.put("message", message);
+
+            if(pssdash_session!=null){
+                jsonObject.put("pssdash_session",pssdash_session);
             }
+
             mainJsonObject.put("data",jsonObject);
+            mainJsonObject.put("returnStatus",returnStatusJsonObject);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
